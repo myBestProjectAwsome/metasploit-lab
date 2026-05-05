@@ -1,0 +1,40 @@
+version: '3.8'
+
+networks:
+  labnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
+
+services:
+  metasploitable:
+    image: tleemcjr/metasploitable2
+    container_name: metasploitable
+    networks:
+      labnet:
+        ipv4_address: 192.168.100.2
+    privileged: true
+    command: >
+      /bin/sh -c "
+      service ssh start &&
+      service apache2 start &&
+      service distcc start &&
+      service postgresql-8.3 start &&
+      service samba start &&
+      service proftpd start &&
+      service mysql start &&
+      service tomcat5.5 start &&
+      service xinetd start &&
+      while true; do sleep 1; done"
+
+  kali:
+    image: kalilinux/kali-rolling
+    container_name: kali
+    networks:
+      labnet:
+        ipv4_address: 192.168.100.3
+    privileged: true
+    stdin_open: true
+    tty: true
+    command: /bin/bash
