@@ -55,12 +55,13 @@ apt update && apt install -y iputils-ping nmap metasploit-framework
 |---|---|---|---|---|
 | 01 | Samba usermap_script | CVE-2007-2447 | 445 | ✅ |
 | 02 | vsftpd 2.3.4 backdoor | CVE-2011-2523 | 21 | 🔜 |
-| 03 | Distcc RCE | CVE-2004-2687 | 3632 | 🔜 |
+| 03 | Distcc RCE | CVE-2004-2687 | 3632 | ✅ |
 | 04 | PostgreSQL auth bypass | — | 5432 | 🔜 |
 
 ## Write-ups
 
 - [01 — Samba usermap_script](notes/01-samba-exploit.md)
+- [02 — Distcc RCE](notes/02-distcc-exploit.md)
 
 ## ⚠️ Disclaimer
 
