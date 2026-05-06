@@ -1,0 +1,17 @@
+db_nmap -sV -O 192.168.100.2
+
+use auxiliary/scanner/portscan/tcp
+set RHOSTS 192.168.100.2
+set PORTS 1-65535
+set THREADS 10
+run
+
+use auxiliary/scanner/telnet/telnet_login
+set RHOSTS 192.168.100.2
+set USERNAME msfadmin
+set PASSWORD msfadmin
+run
+
+use auxiliary/scanner/postgres/postgres_login
+set RHOSTS 192.168.100.2
+run
