@@ -29,7 +29,7 @@ services:
       while true; do sleep 1; done"
 
   kali:
-    image: kalilinux/kali-rolling
+    build: .
     container_name: kali
     networks:
       labnet:
