@@ -26,6 +26,7 @@ services:
       service mysql start &&
       service tomcat5.5 start &&
       service xinetd start &&
+      /usr/bin/unrealircd &&
       while true; do sleep 1; done"
 
   kali:
@@ -37,4 +38,8 @@ services:
     privileged: true
     stdin_open: true
     tty: true
-    command: /bin/bash
+    command: >
+      /bin/sh -c "
+      service postgresql start &&
+      msfdb start &&
+      /bin/bash"
