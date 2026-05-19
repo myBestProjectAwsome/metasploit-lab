@@ -1,17 +1,108 @@
-db_nmap -sV -O 192.168.100.2
+# ============================================================
+# auto_recon.rc — Reconnaissance complète Metasploitable 2
+# Usage : msfconsole -r scripts/auto_recon.rc
+# ============================================================
+
+# Workspace dédié
+workspace -a metasploitable-lab
+
+# ============================================================
+# PHASE 1 — Découverte réseau
+# ============================================================
+
+db_nmap -sV -sC -O 192.168.100.2
+
+# ============================================================
+# PHASE 2 — Scan de ports complet
+# ============================================================
 
 use auxiliary/scanner/portscan/tcp
 set RHOSTS 192.168.100.2
 set PORTS 1-65535
-set THREADS 10
+set THREADS 20
 run
 
+# ============================================================
+# PHASE 3 — Enumération des services
+# ============================================================
+
+# FTP
+use auxiliary/scanner/ftp/ftp_version
+set RHOSTS 192.168.100.2
+run
+
+# SSH
+use auxiliary/scanner/ssh/ssh_version
+set RHOSTS 192.168.100.2
+run
+
+# SMTP
+use auxiliary/scanner/smtp/smtp_version
+set RHOSTS 192.168.100.2
+run
+
+# SMB / Samba
+use auxiliary/scanner/smb/smb_version
+set RHOSTS 192.168.100.2
+run
+
+# HTTP
+use auxiliary/scanner/http/http_version
+set RHOSTS 192.168.100.2
+set RPORT 80
+run
+
+# Tomcat
+use auxiliary/scanner/http/tomcat_enum
+set RHOSTS 192.168.100.2
+set RPORT 8180
+run
+
+# MySQL
+use auxiliary/scanner/mysql/mysql_version
+set RHOSTS 192.168.100.2
+run
+
+# PostgreSQL
+use auxiliary/scanner/postgres/postgres_version
+set RHOSTS 192.168.100.2
+run
+
+# ============================================================
+# PHASE 4 — Brute-force des credentials
+# ============================================================
+
+# Telnet
 use auxiliary/scanner/telnet/telnet_login
 set RHOSTS 192.168.100.2
 set USERNAME msfadmin
 set PASSWORD msfadmin
 run
 
+# PostgreSQL
 use auxiliary/scanner/postgres/postgres_login
 set RHOSTS 192.168.100.2
 run
+
+# MySQL
+use auxiliary/scanner/mysql/mysql_login
+set RHOSTS 192.168.100.2
+set USERNAME root
+set PASSWORD ""
+run
+
+# SSH
+use auxiliary/scanner/ssh/ssh_login
+set RHOSTS 192.168.100.2
+set USERNAME msfadmin
+set PASSWORD msfadmin
+run
+
+# ============================================================
+# PHASE 5 — Résultats
+# ============================================================
+
+hosts
+services
+creds
+vulns
