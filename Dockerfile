@@ -13,6 +13,13 @@ RUN apt update && apt install -y \
     python3 \
     python3-pip \
     openssh-client \
+    gcc \
+    gdb \
+    gdb-multiarch \
+    binutils \
+    file \
+    ltrace \
+    strace \
     && rm -rf /var/lib/apt/lists/*
 
 # Décompresser rockyou.txt
