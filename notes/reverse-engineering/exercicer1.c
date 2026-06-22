@@ -20,7 +20,9 @@ int main()
     int *p = tab;
     int i;
     for (i = 0; i < 5; i++)
+    {
         printf("%d ", *(p + i));
+    }
     printf("\n");
 
     return 0;
