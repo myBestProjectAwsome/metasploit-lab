@@ -1,27 +1,17 @@
 # Compiled binaries (C/ASM exercises)
 *.o
 *.out
-*.elf
 *.bin
 
-# ELF executables in lecon/ (no extension)
-notes/reverse-engineering/lecon/exercice
-notes/reverse-engineering/lecon/exercice3
-notes/reverse-engineering/lecon/exercice4
-notes/reverse-engineering/lecon/exercice6
-notes/reverse-engineering/lecon/exercice7
-notes/reverse-engineering/lecon/exercice8
-notes/reverse-engineering/lecon/gdb_ex3
-notes/reverse-engineering/lecon/gdb_ex5
-notes/reverse-engineering/lecon/gdb_exo1
-notes/reverse-engineering/lecon/gdb_exo5
-notes/reverse-engineering/lecon/arithmetique_pointeurs
-notes/reverse-engineering/lecon/assembleur_exercice_1
-notes/reverse-engineering/lecon/assembleur_exercice_2
-notes/reverse-engineering/lecon/crackme2
-notes/reverse-engineering/lecon/malloc_free
-notes/reverse-engineering/lecon/pointeur_fonction
+# ELF executables without extension (compiled exercises)
+notes/reverse-engineering/lecon/[a-z]*
 notes/reverse-engineering/lecon1
+notes/reverse-engineering/exercice*
+!notes/reverse-engineering/exercice*.c
+!notes/reverse-engineering/lecon/*.c
+
+# PDFs are tracked — but keep this rule ready if needed
+# *.pdf
 
 # Metasploit / pentesting artifacts
 *.rc.local
